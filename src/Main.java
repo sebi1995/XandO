@@ -40,13 +40,13 @@ public class Main {
             }
             while (table.checksBoardIfGameOver(player1.getMark()) == 0 &&
                     table.checksBoardIfGameOver(player2.getMark()) == 0 &&
-                    !table.checksBoardIfDraw());
+                    table.checksBoardIfDraw());
 
             Player winningPlayer = player1.checksIfWon() ? player1 : player2;
             String winningMark = winningPlayer.getMark().toString().substring(1, 2);
             String winningColour = winningMark.equals("X") ? BOLD_BLUE : BOLD_RED;
 
-            if (!table.checksBoardIfDraw()) {
+            if (table.checksBoardIfDraw()) {
                 if (table.checksBoardIfGameOver(winningPlayer.getMark()) != 3) {
                     System.out.println(BOLD_GREEN + "\nCongratulations " +
                             winningColour + winningPlayer.getName() + RESET + BOLD_GREEN +

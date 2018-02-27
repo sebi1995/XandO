@@ -8,16 +8,14 @@ public class Table {
     public enum marks {mX, mO, m_}
 
     Table(boolean turn) {
-        this.table = populatesTable();
+        populatesTable(table = new ArrayList<>());
         this.turn = turn;
     }
 
-    private ArrayList<marks> populatesTable() {
-        ArrayList<marks> map = new ArrayList<>();
+    private void populatesTable(ArrayList<marks> table) {
         for (int i = 0; i < 9; ++i) {
-            map.add(marks.m_);
+            table.add(marks.m_);
         }
-        return map;
     }
 
     public boolean addsToTable(int position, marks mark) {
@@ -64,9 +62,15 @@ public class Table {
     }
 
     public boolean checksBoardIfDraw() {
-        return !table.get(0).equals(marks.m_) && !table.get(1).equals(marks.m_) && !table.get(2).equals(marks.m_) &&
-                !table.get(3).equals(marks.m_) && !table.get(4).equals(marks.m_) && !table.get(5).equals(marks.m_) &&
-                !table.get(6).equals(marks.m_) && !table.get(7).equals(marks.m_) && !table.get(8).equals(marks.m_);
+        boolean res = false;
+        for (marks i : table) {
+            res = i.equals(marks.m_);
+            if (res) break;
+        }
+        return res;
+//        return !table.get(0).equals(marks.m_) && !table.get(1).equals(marks.m_) && !table.get(2).equals(marks.m_) &&
+//                !table.get(3).equals(marks.m_) && !table.get(4).equals(marks.m_) && !table.get(5).equals(marks.m_) &&
+//                !table.get(6).equals(marks.m_) && !table.get(7).equals(marks.m_) && !table.get(8).equals(marks.m_);
     }
 
     public int checksBoardIfGameOver(marks m) {
